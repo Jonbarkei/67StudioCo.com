@@ -1,97 +1,102 @@
-var container1, container2, timeout, docelem;
+ @-webkit-keyframes swinging {
+        0% {
+            -webkit-transform: rotate(10deg);
+        }
+        50% {
+            -webkit-transform: rotate(-5deg)
+        }
+        100% {
+            -webkit-transform: rotate(10deg);
+        }
+    }
 
-function addSmoke(){
-	if(docelem.style.getPropertyValue("--playing") == "running"){
-		spreadSmoke();
-	}
-	else{
-		console.log("paused");
-	}
-	timeout = setTimeout(addSmoke, random(180, 200));
-}
+    @keyframes swinging {
+        0% {
+            transform: rotate(10deg);
+        }
+        50% {
+            transform: rotate(-5deg)
+        }
+        100% {
+            transform: rotate(10deg);
+        }
+    }
 
-function spreadSmoke(){
-		var p = new Point(
-			random(10, 130), 
-			random(-110, -10), 
-			random(20, 130), 
-			random(1, 100), 
-			random(-60, 70), "smoke-pre");
 
-		var q = new Point(
-			random(10, 130), 
-			random(-110, -10), 
-			random(40, 80), 
-			random(1, 100), 
-			random(-60, 70), "smoke-pre");
+    @-webkit-keyframes sleeping {
+        0% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
 
-		var r = new Point(
-			random(30, 90), 
-			random(-110, -10), 
-			random(40, 60), 
-			random(1, 90), 
-			random(-50, 50), "smoke-rest");
-	
-		var s = new Point(
-			random(30, 90), 
-			random(-110, -10), 
-			random(20, 40), 
-			random(1, 90), 
-			random(-55, 55), "smoke-rest");
+    @keyframes sleeping {
+        0% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
 
-		container1.appendChild(p.create());
-		container2.appendChild(q.create());
-		container3.appendChild(r.create());
-		container4.appendChild(s.create());
-}
+    #swinger {
+        -webkit-transform-origin: top center;
+        transform-origin: top center;
+        transform-box: fill-box;
+        -webkit-animation: swinging 3.5s ease-in-out forwards infinite;
+        animation: swinging 3.5s ease-in-out forwards infinite;
+    }
 
-function random(min, max){
-	return int = min + Math.random() * (max - min), Math.round(int);
-}
+    #zone {
+        opacity: 0;
+        -webkit-animation: sleeping 3.5s ease-in-out forwards infinite;
+        animation: sleeping 3.5s ease-in-out forwards infinite;
+    }
 
-class Point{
-	constructor(cx, cy, sizemax, delay, shift, cls){
-		this.x = cx;
-		this.y = cy;
-		this.sizeMax = sizemax;
-		this.class = cls;
-		this.delay = delay;
-		this.shift = shift;
-		this.element;
-	}
+    #ztwo {
+        opacity: 0;
+        -webkit-animation: sleeping 3.5s ease-in-out forwards infinite;
+        animation: sleeping 3.5s ease-in-out forwards infinite;
+        animation-delay: 0.4s;
+        -website-animation-delay: 0.4s;
+    }
 
-	create(){
-		var elem = document.createElement("div");
-		elem.className = this.class;
-		elem.style.setProperty("--x", this.x);
-		elem.style.setProperty("--y", this.y);
-		elem.style.setProperty("--d", this.delay);
-		elem.style.setProperty("--size", this.sizeMax);
-		elem.style.setProperty("--shift", this.shift);
-		elem.addEventListener("animationend", function(){
-			this.parentElement.removeChild(this);
-		});
-		this.element = elem;
-		return elem;
-	}
-}
+    #zthree {
+        opacity: 0;
+        -webkit-animation: sleeping 3.5s ease-in-out forwards infinite;
+        animation: sleeping 3.5s ease-in-out forwards infinite;
+        animation-delay: 0.7s;
+        -website-animation-delay: 0.7s;
+    }
 
-window.addEventListener("load", () => {
-	container1 = document.querySelector(".smoke-1-pre"),
-	container2 = document.querySelector(".smoke-2-pre"),
-	container3 = document.querySelector(".smoke-1-rest"),
-	container4 = document.querySelector(".smoke-2-rest"),
-	docelem = document.documentElement;
+    #zfour {
+        opacity: 0;
+        -webkit-animation: sleeping 3.5s ease-in-out forwards infinite;
+        animation: sleeping 3.5s ease-in-out forwards infinite;
+        animation-delay: 1s;
+        -website-animation-delay: 1s;
+    }
 
-	if(timeout) clearTimeout(timeout);
-	docelem.style.setProperty("--playing", "running");
-	addSmoke();
-});
+    #zfive {
+        opacity: 0;
+        -webkit-animation: sleeping 3.5s ease-in-out forwards infinite;
+        animation: sleeping 3.5s ease-in-out forwards infinite;
+        animation-delay: 1.3s;
+        -website-animation-delay: 1.3s;
+    }
 
-window.addEventListener("focus", () => {
-	if(docelem) docelem.style.setProperty("--playing", "running");
-});
+    .container {
+        text-align: center;
+    }
 
-window.addEventListener("blur", () => {
-	if(docelem) docelem.style.setProperty("--playing", "paused");
-});
+    svg {
+        max-width: 1000px;
+    }
